@@ -31,6 +31,9 @@ class Game:
                     if challenge_return:
                         score.save(select_return, falcon_score)
 
+            elif select_return == SELECT_OPTION[1]:
+                score.show()
+
                 pygame.quit()  # Close Window
                 quit()  # end pygame
             else:

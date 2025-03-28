@@ -7,7 +7,7 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import C_WHITE, WIN_HEIGHT, SELECT_OPTION, EVENT_ENEMY, SPAWN_TIME, C_GREEN, C_CYAN, EVENT_TIMEOUT, \
+from code.Const import C_WHITE, WIN_HEIGHT, SELECT_OPTION, EVENT_EXECUTOR, SPAWN_TIME, C_GREEN, C_CYAN, EVENT_TIMEOUT, \
     TIMEOUT_STEP, TIMEOUT_CHALLENGE
 from code.Executor import Executor
 from code.Entity import Entity
@@ -17,16 +17,16 @@ from code.Falcon import Falcon
 
 
 class Challenge:
-    def __init__(self, window: Surface, name: str, game_mode: str, player_score: list[int]):
+    def __init__(self, window: Surface, name: str, game_mode: str, falcon_score: list[int]):
         self.timeout = TIMEOUT_CHALLENGE
         self.window = window
         self.name = name
         self.game_mode = game_mode
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity(self.name + 'Bg'))
-        player = EntityFactory.get_entity('Player1')
-        player.score = player_score[0]
-        self.entity_list.append(player)
+        falcon = EntityFactory.get_entity('Falcon')
+        falcon.score = falcon_score[0]
+        self.entity_list.append(falcon)
         pygame.time.set_timer(EVENT_EXECUTOR, SPAWN_TIME)
         pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)  # 100ms
 
